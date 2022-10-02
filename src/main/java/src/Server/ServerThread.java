@@ -1,7 +1,7 @@
 package src.Server;
 
-import src.json.JsonHandler;
 import src.info.SendTAG;
+import src.json.JsonHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;

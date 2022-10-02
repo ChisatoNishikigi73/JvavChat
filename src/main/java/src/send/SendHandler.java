@@ -1,10 +1,10 @@
 package src.send;
 
 import com.google.gson.Gson;
+import src.info.Error;
 import src.info.PackageOpcodes;
 import src.info.SendTAG;
 import src.info.User;
-import src.info.Error;
 
 public class SendHandler {
 

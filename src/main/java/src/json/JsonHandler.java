@@ -2,11 +2,10 @@ package src.json;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import src.info.ServerInfo;
 import src.info.SendTAG;
+import src.info.ServerInfo;
 
 import java.io.*;
-import java.lang.reflect.Type;
 
 public class JsonHandler {
     public SendTAG Read(String content) {

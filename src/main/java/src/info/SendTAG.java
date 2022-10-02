@@ -1,8 +1,6 @@
 package src.info;
 
 import com.google.gson.annotations.SerializedName;
-import src.info.User;
-import src.info.PackageOpcodes;
 
 public class SendTAG{
     public enum HEAD {

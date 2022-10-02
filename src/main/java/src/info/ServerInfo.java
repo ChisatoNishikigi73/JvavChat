@@ -1,6 +1,5 @@
 package src.info;
 
-import javax.swing.plaf.PanelUI;
 import java.io.File;
 
 public class ServerInfo {

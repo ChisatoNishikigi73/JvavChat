@@ -1,10 +1,10 @@
 package src.Client;
 
-import src.json.JsonHandler;
-import src.send.SendHandler;
 import src.info.ClientInfo;
 import src.info.PackageOpcodes;
 import src.info.SendTAG;
+import src.json.JsonHandler;
+import src.send.SendHandler;
 
 import javax.swing.*;
 import java.io.*;

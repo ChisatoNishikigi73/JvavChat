@@ -4,7 +4,6 @@ package src;
 import src.Client.Client;
 import src.Server.Server;
 import src.json.Database;
-import src.json.JsonHandler;
 
 import java.io.IOException;
 

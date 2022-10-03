@@ -14,7 +14,6 @@ public class ChatDemo {
     }
     public static void main(String[] args) throws IOException {
         System.out.print("start");
-
         if (1==2) {
             Database.init();
             Server server = new Server();

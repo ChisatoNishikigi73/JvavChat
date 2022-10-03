@@ -31,69 +31,82 @@ public class Database {
 
     public Database(String usage) {
         switch (usage) {
+            case "null":
+                break;
             case "init":
                 this.data.put(0,new User("Admin", 23333, "kawaa-qwq@github.com"));
                 counter = 1;
-                save(this);
+                save();
+
         }
     }
-    public Database() throws FileNotFoundException { // init
 
-        try {
-            Database database = new JsonHandler().ReadFromResource(new File(ServerInfo.databaseFile.toURI()));
-
-            this.data = database.getData();
-            this.counter = database.getCounter();
-
-        }catch (Exception ignored) {
-
-        }
+    public Database(){
 
     }
 
     public void addId(){
+        pullDatabase();
+
         data.put(counter,new User(counter));
         counter++;
-        save(this);
+        save();
     }
 
     public void addUser(int id, User user) {
+        pullDatabase();
         data.put(id, user);
-        save(this);
+        save();
     }
 
     public int getCounter() {
+        pullDatabase();
         return counter;
     }
 
     public void setUserName(int id, String username){
+        pullDatabase();
         if (id >= data.size()) {
             return;
         }
         User user = data.get(id);
         user.setUserName(username);
-        save(this);
+        save();
     }
 
 
     public Map<Integer, User> getData() {
+        pullDatabase();
         return data;
     }
 
     public void setData(Map<Integer, User> data) {
+        pullDatabase();
         this.data = data;
     }
 
     public void setCounter(int counter) {
+        pullDatabase();
         this.counter = counter;
-        save(this);
+        save();
     }
 
 
-    public void save(Database database) {
-        this.data = database.getData();
-        this.counter = database.getCounter();
+    public void save(){
+
         new JsonHandler().SaveDatabase(this);
+    }
+
+    public void pullDatabase() {
+        try {
+            Database database = new JsonHandler().ReadFromResource(new File(ServerInfo.databaseFile.toURI()));
+
+            this.data = database.data;
+            this.counter = database.counter;
+
+        }catch (Exception ignored) {
+
+        }
 
     }
 

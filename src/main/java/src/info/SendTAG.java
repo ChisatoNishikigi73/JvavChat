@@ -33,7 +33,7 @@ public class SendTAG{
 
     }
 
-    public SendTAG(HEAD head, int opcode, int counter) { // 服务器分配uid
+    public SendTAG(HEAD head, int opcode, int counter) { // 服务器分配id
         this.head = head;
         this.opcode = opcode;
         this.id = counter;

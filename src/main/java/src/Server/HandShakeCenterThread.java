@@ -25,7 +25,6 @@ public class HandShakeCenterThread extends Thread{
         try {
             ServerSocket ss = new ServerSocket(ServerInfo.centerPort) ;
             Socket center = ss.accept();
-            ServerThread handShakeCenter = new ServerThread(center);
             br = new BufferedReader(new InputStreamReader(center.getInputStream()));
             ps = new PrintStream(center.getOutputStream());
 
@@ -33,37 +32,38 @@ public class HandShakeCenterThread extends Thread{
 
             while((input = br.readLine()) != null) {
                 SendTAG a = new JsonHandler().Read(input);
+
                 System.out.println(PackageOpcodes.CLIENT + input);
 
                 switch (a.getOpcode()) {
-                    default:
-                        System.out.print(PackageOpcodes.SERVER);
                     case 200: //HandShake0
+                        System.out.print(PackageOpcodes.SERVER);
+
                         int counter = new Database().getCounter();
                         new Database().addId();
-                        System.out.println(counter);
                         String handShakeRequest = new SendHandler.rspPackage().PackageRegister(counter);
 
                         ps.println(handShakeRequest);
-                        System.out.println(handShakeRequest);
-
+                        System.out.println("HandShake0" + handShakeRequest);
                         break;
-
                     case 203://Register
-                        System.out.println(PackageOpcodes.SERVER + "Register: " + input);
                         SendTAG sendTAG = new JsonHandler().Read(input);
 
-
-                        new Database().setUserName(sendTAG.getUser().getUID(), sendTAG.getUser().getUserName());
+                        new Database().addUser(sendTAG.getId(), sendTAG.getUser());
                         break;
+                    default:
+                        System.out.println("失败");
                 }
 
                 ss.close();
+                center.close();
+                br.close();
                 HandShakeCenterThread centerThread = new HandShakeCenterThread();
                 centerThread.start();
                 break;
 
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
